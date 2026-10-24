@@ -1,0 +1,35 @@
+services:
+  # ============================================================================
+  # Servicio Principal: API del Asistente Omnicanal
+  # ============================================================================
+  asistente-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: asistente-omnicanal-api
+    restart: unless-stopped
+    ports:
+      - "${PORT:-8000}:8000"
+    env_file:
+      - .env
+    environment:
+      - PORT=8000
+      - HOST=0.0.0.0
+      - PYTHONUNBUFFERED=1
+    volumes:
+      # Persistencia de base de datos SQLite y registros
+      - ./data:/app/data
+      - ./logs:/app/logs
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    networks:
+      - asistente-network
+
+networks:
+  asistente-network:
+    name: asistente-omnicanal-network
+    driver: bridge

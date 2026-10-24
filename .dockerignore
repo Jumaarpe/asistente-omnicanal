@@ -1,0 +1,38 @@
+# Git y control de versiones
+.git
+.gitignore
+
+# Entornos virtuales de desarrollo
+venv/
+.venv/
+env/
+
+# Caché y artefactos de Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+dist/
+build/
+
+# Pruebas y cobertura
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Persistencia local y datos
+data/
+*.db
+*.db-wal
+*.db-shm
+logs/
+
+# Variables de entorno secretas (inyectadas vía runtime / docker-compose)
+.env
+.env.local
+
+# IDE y editores
+.idea/
+.vscode/
+*.swp
+*.swo
